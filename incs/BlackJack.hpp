@@ -7,6 +7,7 @@
 # include "Dealer.hpp"
 
 # define STARTING_MONEY 500
+# define DECK_NUMBER 6
 
 class   BlackJack
 {
