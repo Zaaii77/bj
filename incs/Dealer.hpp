@@ -7,10 +7,12 @@
 class   Dealer
 {
     public:
-        
+        Dealer() {};
+		~Dealer() {};
+		Dealer(const Dealer& other) = delete;
+		Dealer&	operator=(const Dealer& other) = delete;
     private:
         Shoe                shoe;
-        std::vector<Player> players;
 };
 
 #endif

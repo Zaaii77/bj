@@ -12,9 +12,9 @@ class   Player
         Player(const Player& other) = delete;
         Player& operator=(const Player& other) = delete;
     private:
-        std::vector<Card>   hand;
+		std::string         name;
         unsigned int        money;
-        std::string         name;
+        std::vector<Card>   hand;
 };
 
 #endif

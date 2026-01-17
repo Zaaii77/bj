@@ -4,13 +4,21 @@
 # include <map>
 # include <string>
 # include <iostream>
+# include "Dealer.hpp"
 
 # define STARTING_MONEY 500
 
 class   BlackJack
 {
     public:
+		BlackJack() {};
+		~BlackJack() {};
+		BlackJack(const BlackJack& other) = delete;
+		BlackJack&	operator=(const BlackJack& other) = delete;
     private:
+		Dealer				dealer;
+		std::vector<Player>	players;
+		
 };
 
 #endif

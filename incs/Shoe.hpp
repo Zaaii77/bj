@@ -6,7 +6,7 @@
 class   Shoe
 {
     public:
-        Shoe(int deckNumber) {};
+        Shoe() {};
         ~Shoe() {};
         Shoe(const Shoe& other) = delete;
         Shoe&   operator=(const Shoe& other) = delete;
