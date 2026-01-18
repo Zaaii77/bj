@@ -6,7 +6,7 @@ INC = -I$(INC_DIR)
 SRC_DIR = srcs
 OBJ_DIR = obj
 
-SRC =	$(SRC_DIR)/main.cpp
+SRC =	$(SRC_DIR)/main.cpp $(SRC_DIR)/Card.cpp $(SRC_DIR)/Shoe.cpp
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 

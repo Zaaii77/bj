@@ -4,6 +4,8 @@
 # include <map>
 # include <string>
 # include <iostream>
+# include <ctime>
+# include <cstdlib>
 # include "Dealer.hpp"
 
 # define STARTING_MONEY 500
@@ -19,7 +21,6 @@ class   BlackJack
     private:
 		Dealer				dealer;
 		std::vector<Player>	players;
-		
 };
 
 #endif
