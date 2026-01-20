@@ -1,5 +1,10 @@
 #include "../incs/Player.hpp"
 
+Player::Player(const Player& other)
+{
+	*this = other;
+}
+
 Player&	Player::operator=(const Player& other)
 {
 	if (this != &other)
@@ -14,6 +19,33 @@ Player&	Player::operator=(const Player& other)
 void	Player::addCard(Card card)
 {
 	hand.push_back(card);
-	std::cout << "hand size: " << hand.size() << std::endl;
-	std::cout << hand.front().getType() << std::endl;
+	handSum += card.getValue();
+}
+
+void	Player::addMoney(unsigned int gain)
+{
+	money += gain;
+}
+
+unsigned int	Player::getMoney(void)
+{
+	return (money);
+}
+
+int	Player::getCardValue(int index)
+{
+	if (index >= hand.size())
+		throw (std::runtime_error("You try to access outside the player's hand"));
+	return (hand[index].getType());
+}
+
+int	Player::getHandSum(void)
+{
+	return (handSum);
+}
+
+void	Player::clearHand(void)
+{
+	hand.clear();
+	handSum = 0;
 }

@@ -27,3 +27,17 @@ Player& BlackJack::getPlayer(void)
 {
     return (player);
 }
+
+void    BlackJack::startGame(void)
+{
+    while (player.getMoney() > 0)
+    {
+        dealer.checkShoe();
+        std::cout << "The dealer give you a card.." << std::endl;
+        dealCardToPlayer(player);
+        std::cout << "Your card is " << static_cast<Type>(player.getCardValue(0)) << std::endl;
+        std::cout << "The dealer pick a card" << std::endl;
+        dealer.pickCard();
+        dealCardToPlayer(player);
+    }
+}

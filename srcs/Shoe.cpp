@@ -21,3 +21,8 @@ Card	Shoe::giveCard(void)
 	this->cards.erase(this->cards.begin() + randomDraw);
 	return (drawed);
 }
+
+int	Shoe::size(void)
+{
+	return (cards.size());
+}

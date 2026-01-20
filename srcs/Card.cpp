@@ -34,3 +34,29 @@ const Type& Card::getType(void) const
 {
     return (this->type);
 }
+
+int Card::getValue(void)
+{
+    switch (type)
+    {
+        case AS:
+        case TWO:
+        case THREE:
+        case FOUR:
+        case FIVE:
+            return (5);
+        case SIX:
+            return (6);
+        case SEVEN:
+            return (7);
+        case EIGHT:
+            return (8);
+        case NINE:
+            return (9);
+        case TEN:
+        case JACK:
+        case QUEEN:
+        case KING:
+            return (10);
+    }
+}

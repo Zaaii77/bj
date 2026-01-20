@@ -31,6 +31,7 @@ class   Card
         Card(Card&& other) = default;
         Card&   operator=(const Card&& other);
         const Type& getType(void) const;
+		int			getValue(void);
     private:
         Type type;
 };
