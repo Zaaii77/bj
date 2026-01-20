@@ -21,6 +21,15 @@ Card&   Card::operator=(const Card& other)
     return (*this);
 }
 
+Card&   Card::operator=(const Card&& other)
+{
+    if (this != &other)
+    {
+        type = other.type;
+    }
+    return (*this);
+}
+
 const Type& Card::getType(void) const
 {
     return (this->type);

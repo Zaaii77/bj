@@ -29,7 +29,7 @@ class   Card
         Card(const Card& other);
         Card&   operator=(const Card& other);
         Card(Card&& other) = default;
-        Card&   operator=(Card&& other) = default;
+        Card&   operator=(const Card&& other);
         const Type& getType(void) const;
     private:
         Type type;

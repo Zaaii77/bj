@@ -14,13 +14,13 @@
 class   BlackJack
 {
     public:
-		BlackJack() {};
+		BlackJack();
 		~BlackJack() {};
 		BlackJack(const BlackJack& other) = delete;
 		BlackJack&	operator=(const BlackJack& other) = delete;
     private:
 		Dealer				dealer;
-		std::vector<Player>	players;
+		Player				player;
 };
 
 #endif
