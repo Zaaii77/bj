@@ -6,6 +6,7 @@
 # include <iostream>
 # include <ctime>
 # include <cstdlib>
+# include <algorithm>
 # include "Dealer.hpp"
 
 # define STARTING_MONEY 500
