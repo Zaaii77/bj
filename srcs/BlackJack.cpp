@@ -17,3 +17,13 @@ BlackJack::BlackJack()
     std::cout << "Nice to meet you " << name << std::endl;
     std::cout << "You will start with " << STARTING_MONEY << "$. Try to earn more" << std::endl;
 }
+
+void		BlackJack::dealCardToPlayer(Player& player)
+{
+    dealer.dealCard(player);
+}
+
+Player& BlackJack::getPlayer(void)
+{
+    return (player);
+}

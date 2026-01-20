@@ -14,10 +14,9 @@ void	Shoe::resetShoe(void)
 				this->cards.push_back(Card(i));
 }
 
-Card	Shoe::drawCard(void)
+Card	Shoe::giveCard(void)
 {
 	int	randomDraw = rand() % this->cards.size();
-	std::cout << randomDraw << std::endl;
 	Card	drawed = std::move(this->cards[randomDraw]);
 	this->cards.erase(this->cards.begin() + randomDraw);
 	return (drawed);

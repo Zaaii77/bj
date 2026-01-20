@@ -12,10 +12,10 @@ class   Shoe
         Shoe&   operator=(const Shoe& other) = delete;
         Shoe(Shoe&& other) = default;
         Shoe&   operator=(Shoe&& other) = default;
+        Card    giveCard(void);
     private:
         std::vector<Card>    cards;
         void    resetShoe(void);
-        Card    drawCard(void);
 };
 
 #endif

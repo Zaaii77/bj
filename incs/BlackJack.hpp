@@ -19,6 +19,8 @@ class   BlackJack
 		~BlackJack() {};
 		BlackJack(const BlackJack& other) = delete;
 		BlackJack&	operator=(const BlackJack& other) = delete;
+		void		dealCardToPlayer(Player& player);
+		Player&		getPlayer(void);
     private:
 		Dealer				dealer;
 		Player				player;

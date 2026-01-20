@@ -11,8 +11,10 @@ class   Dealer
 		~Dealer() {};
 		Dealer(const Dealer& other) = delete;
 		Dealer&	operator=(const Dealer& other) = delete;
+        void    dealCard(Player& player);
     private:
         Shoe                shoe;
+        std::vector<Card>   hand;
 };
 
 #endif
