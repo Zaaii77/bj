@@ -104,15 +104,27 @@ void    BlackJack::startGame(void)
             std::cout << "Dealer won. You get " << player.getHandSum() << " and the dealer have " << dealer.getHandSum() << std::endl;
             break ;
         }
+        else if (dealer.getHandSum() < 22 && dealer.getHandSum() == player.getHandSum())
+        {
+            std::cout << "You and the dealer have the same hand sum, draw." << std::endl;
+            gameStatus = DRAW;
+            break ;
+        }
         else
         {
-            while (dealer.getHandSum() <= player.getHandSum())
+            while (dealer.getHandSum() < 22 && dealer.getHandSum() <= player.getHandSum())
             {
                 dealer.pickCard();
                 if (dealer.getHandSum() > 21)
                 {
                     std::cout << "You won, dealer get " << dealer.getHandSum() << std::endl;
                     gameStatus = WIN;
+                    break ;
+                }
+                else if (dealer.getHandSum() > player.getHandSum())
+                {
+                    std::cout << "You loose noob" << std::endl;
+                    gameStatus = LOOSE;
                     break ;
                 }
             }
