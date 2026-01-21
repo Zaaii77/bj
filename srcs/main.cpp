@@ -2,9 +2,16 @@
 
 int main(void)
 {
-    srand(time(0));
-    BlackJack   bj;
+    try
+    {
+        srand(time(0));
+        BlackJack   bj;
 
-    bj.startGame();
+        bj.startGame();
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
     return (0);
 }

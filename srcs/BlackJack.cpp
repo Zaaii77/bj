@@ -1,11 +1,21 @@
 #include "../incs/BlackJack.hpp"
 
+bool    nameIsValid(const std::string& name)
+{
+    for (size_t i = 0; i < name.length(); i++)
+    {
+        if (std::isalpha(name[i]))
+            return (true);
+    }
+    return (false);
+}
+
 BlackJack::BlackJack()
 {
     std::string name;
 
     std::cout << "Welcome in your personnal blackjack game !" << std::endl;
-    while (name.empty())
+    while (!nameIsValid(name))
     {
         std::cout << "What's your name ?" << std::endl;
         std::getline(std::cin, name);
@@ -48,7 +58,10 @@ void    BlackJack::startGame(void)
         int handValue = player.getHandSum();
         std::cout << "Dealer have " << dealer.getCardValue(0) << std::endl;
         if (handValue > 21)
+        {
             std::cout << "wasted you get " << handValue << std::endl;
+            break ;
+        }
         while (handValue < 21)
         {
             std::string userChoice;
