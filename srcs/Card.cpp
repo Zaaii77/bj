@@ -40,9 +40,13 @@ int Card::getValue(void)
     switch (type)
     {
         case AS:
+            return (1);
         case TWO:
+            return (2);
         case THREE:
+            return (3);
         case FOUR:
+            return (4);
         case FIVE:
             return (5);
         case SIX:
@@ -59,4 +63,5 @@ int Card::getValue(void)
         case KING:
             return (10);
     }
+    return (0);
 }

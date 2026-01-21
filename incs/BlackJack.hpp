@@ -23,6 +23,7 @@ class   BlackJack
     private:		
 		void				dealCardToPlayer(Player& player);
 		Player&				getPlayer(void);
+		void				dealingPhase(void);
 		Dealer				dealer;
 		Player				player;
 };

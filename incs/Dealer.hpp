@@ -14,9 +14,12 @@ class   Dealer
         void    dealCard(Player& player);
         void    checkShoe(void);
         void    pickCard(void);
+        int     getHandSum(void);
+        int     getCardValue(int index);
     private:
         Shoe                shoe;
         std::vector<Card>   hand;
+        int                 handSum;
 };
 
 #endif

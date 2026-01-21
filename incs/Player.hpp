@@ -19,6 +19,7 @@ class   Player
     int             getCardValue(int index);
     int             getHandSum(void);
     void            clearHand(void);
+    size_t          handSize(void);
   private:
     std::string         name;
     unsigned int        money;

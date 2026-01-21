@@ -28,16 +28,47 @@ Player& BlackJack::getPlayer(void)
     return (player);
 }
 
+void    BlackJack::dealingPhase(void)
+{
+    dealer.checkShoe();
+    std::cout << "The dealer give you a card.." << std::endl;
+    dealCardToPlayer(player);
+    std::cout << "Your card is " << static_cast<Type>(player.getCardValue(0)) << std::endl;
+    std::cout << "The dealer pick a card" << std::endl;
+    dealer.pickCard();
+    dealCardToPlayer(player);
+    std::cout << "Your card is " << static_cast<Type>(player.getCardValue(1)) << std::endl;
+}
+
 void    BlackJack::startGame(void)
 {
     while (player.getMoney() > 0)
     {
-        dealer.checkShoe();
-        std::cout << "The dealer give you a card.." << std::endl;
-        dealCardToPlayer(player);
-        std::cout << "Your card is " << static_cast<Type>(player.getCardValue(0)) << std::endl;
-        std::cout << "The dealer pick a card" << std::endl;
-        dealer.pickCard();
-        dealCardToPlayer(player);
+        dealingPhase();
+        int handValue = player.getHandSum();
+        std::cout << "Dealer have " << dealer.getCardValue(0) << std::endl;
+        if (handValue > 21)
+            std::cout << "wasted you get " << handValue << std::endl;
+        while (handValue < 21)
+        {
+            std::string userChoice;
+            char    choice = 0;
+            while (userChoice.length() != 1 && choice != 's' && choice != 'd')
+            {
+                choice = userChoice.empty() ? 0 : userChoice.front();
+                std::cout << "select an option:\n'd' to draw or 's' to stop" << std::endl;
+                std::getline(std::cin, userChoice);
+                if (std::cin.eof())
+                    throw (std::runtime_error("User stop the program"));
+            }
+            if (choice == 'd')
+            {
+                dealCardToPlayer(player);
+                std::cout << "you picked a " << player.getCardValue(player.handSize() - 1) << std::endl;
+                std::cout << "your hand is now " << player.getHandSum() << std::endl;
+            }
+            else
+                break ;
+        }
     }
 }

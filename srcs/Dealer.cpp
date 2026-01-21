@@ -7,6 +7,8 @@ void    Dealer::dealCard(Player& player)
 
 void    Dealer::checkShoe(void)
 {
+    handSum = 0;
+    hand.clear();
     if (shoe.size() < 52)
         shoe.resetShoe();
 }
@@ -14,4 +16,17 @@ void    Dealer::checkShoe(void)
 void    Dealer::pickCard(void)
 {
     hand.push_back(shoe.giveCard());
+    handSum += hand.back().getValue();
+}
+
+int     Dealer::getHandSum(void)
+{
+    return (handSum);
+}
+
+int     Dealer::getCardValue(int index)
+{
+    if (static_cast<size_t>(index) >= hand.size())
+        throw (std::runtime_error("You try to access outside the dealer's hand"));
+    return (hand[index].getValue());
 }

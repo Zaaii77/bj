@@ -34,7 +34,7 @@ unsigned int	Player::getMoney(void)
 
 int	Player::getCardValue(int index)
 {
-	if (index >= hand.size())
+	if (static_cast<size_t>(index) >= hand.size())
 		throw (std::runtime_error("You try to access outside the player's hand"));
 	return (hand[index].getType());
 }
@@ -48,4 +48,9 @@ void	Player::clearHand(void)
 {
 	hand.clear();
 	handSum = 0;
+}
+
+size_t	Player::handSize(void)
+{
+	return (hand.size());
 }
