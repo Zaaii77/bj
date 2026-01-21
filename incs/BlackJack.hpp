@@ -12,6 +12,14 @@
 # define STARTING_MONEY 500
 # define DECK_NUMBER 6
 
+enum	Status
+{
+	WIN,
+	LOOSE,
+	DRAW,
+	NONE
+};
+
 class   BlackJack
 {
     public:
@@ -26,6 +34,7 @@ class   BlackJack
 		void				dealingPhase(void);
 		Dealer				dealer;
 		Player				player;
+		Status				gameStatus;
 };
 
 #endif
