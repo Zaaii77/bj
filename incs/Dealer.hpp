@@ -7,7 +7,7 @@
 class   Dealer
 {
     public:
-        Dealer() {};
+        Dealer() : handSum(0) {};
 		~Dealer() {};
 		Dealer(const Dealer& other) = delete;
 		Dealer&	operator=(const Dealer& other) = delete;

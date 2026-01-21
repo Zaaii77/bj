@@ -57,10 +57,7 @@ int Card::getValue(void)
             return (8);
         case NINE:
             return (9);
-        case TEN:
-        case JACK:
-        case QUEEN:
-        case KING:
+        case TEN: case JACK: case QUEEN: case KING:
             return (10);
     }
     return (0);

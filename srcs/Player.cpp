@@ -36,7 +36,7 @@ int	Player::getCardValue(int index)
 {
 	if (static_cast<size_t>(index) >= hand.size())
 		throw (std::runtime_error("You try to access outside the player's hand"));
-	return (hand[index].getType());
+	return (hand[index].getValue());
 }
 
 int	Player::getHandSum(void)

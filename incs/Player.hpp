@@ -9,7 +9,7 @@ class   Player
 {
   public:
     Player() = default;
-    Player(std::string playerName, unsigned int startMoney) : name(playerName), money(startMoney) {hand.clear();};
+    Player(std::string playerName, unsigned int startMoney) : name(playerName), money(startMoney), handSum(0) {hand.clear();};
     ~Player() {};
     Player(const Player& other);
     Player& operator=(const Player& other);

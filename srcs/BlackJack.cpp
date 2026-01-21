@@ -41,13 +41,11 @@ Player& BlackJack::getPlayer(void)
 void    BlackJack::dealingPhase(void)
 {
     dealer.checkShoe();
-    std::cout << "The dealer give you a card.." << std::endl;
+    player.clearHand();
+    std::cout << "Dealing phase..." << std::endl;
     dealCardToPlayer(player);
-    std::cout << "Your card is " << static_cast<Type>(player.getCardValue(0)) << std::endl;
-    std::cout << "The dealer pick a card" << std::endl;
     dealer.pickCard();
     dealCardToPlayer(player);
-    std::cout << "Your card is " << static_cast<Type>(player.getCardValue(1)) << std::endl;
 }
 
 void    BlackJack::startGame(void)
@@ -62,26 +60,43 @@ void    BlackJack::startGame(void)
             std::cout << "wasted you get " << handValue << std::endl;
             break ;
         }
-        while (handValue < 21)
+        while (handValue <= 21)
         {
             std::string userChoice;
             char    choice = 0;
             while (userChoice.length() != 1 && choice != 's' && choice != 'd')
             {
-                choice = userChoice.empty() ? 0 : userChoice.front();
-                std::cout << "select an option:\n'd' to draw or 's' to stop" << std::endl;
+                std::cout << "Your hand: " << handValue << ". Dealer card: " << dealer.getCardValue(0) << std::endl;
+                std::cout << "select an option:" << std::endl;
+                std::cout << "'d' to draw or 's' to stop" << std::endl;
                 std::getline(std::cin, userChoice);
                 if (std::cin.eof())
                     throw (std::runtime_error("User stop the program"));
+                choice = userChoice.empty() ? 0 : userChoice.front();
             }
             if (choice == 'd')
             {
                 dealCardToPlayer(player);
                 std::cout << "you picked a " << player.getCardValue(player.handSize() - 1) << std::endl;
                 std::cout << "your hand is now " << player.getHandSum() << std::endl;
+                if (player.getHandSum() > 21)
+                    break ;
             }
             else
                 break ;
+        }
+        if (player.getHandSum() > 21)
+        {
+            std::cout << "wasted you get " << player.getHandSum() << std::endl;
+            break ;
+        }
+        else if (player.getHandSum() == 21)
+        {
+            if (player.handSize() == 2)
+                std::cout << "BLACKJACK BODY !" << std::endl;
+            else
+                std::cout << "What a chance, you get 21" << std::endl;
+            break ;
         }
     }
 }
