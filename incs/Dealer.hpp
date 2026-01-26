@@ -11,14 +11,19 @@ class   Dealer
 		~Dealer() {};
 		Dealer(const Dealer& other) = delete;
 		Dealer&	operator=(const Dealer& other) = delete;
-        void    dealCard(Player& player);
-        void    checkShoe(void);
-        size_t  getDeckSize();
-        void    pickCard(void);
-        int     getHandSum(void);
-        int     getCardValue(int index);
+	
+        void    	dealCard(Player& player);
+        void    	checkShoe(void);
+        size_t  	getDeckSize();
+        void    	pickCard(void);
+        int     	getHandSum(void);
+        int     	getCardValue(int index);
+		const Card&	getSecondCard(void);
+		void		pickSecondCard(void);
+
     private:
         Shoe                shoe;
+		Card				secondCard;
         std::vector<Card>   hand;
         int                 handSum;
 };

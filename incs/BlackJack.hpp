@@ -34,6 +34,7 @@ class   BlackJack
 		Player&				getPlayer(void);
 		void				dealingPhase(void);
 		void				clearScreen(void);
+		void				playerChoice(void);
 		Dealer				dealer;
 		Player				player;
 		Status				gameStatus;

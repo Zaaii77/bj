@@ -54,3 +54,20 @@ size_t	Player::handSize(void)
 {
 	return (hand.size());
 }
+
+int	Player::getBet(void)
+{
+	return (bet);
+}
+
+bool	Player::setBet(int amount)
+{
+	if (money - amount >= 0)
+		bet = amount;
+	else
+	{
+		std::cout << "You try to spend more money than you have..." << std::endl;
+		return (false);
+	}
+	return (true);
+}

@@ -19,6 +19,16 @@ void    Dealer::pickCard(void)
     handSum += hand.back().getValue();
 }
 
+void	Dealer::pickSecondCard(void)
+{
+	secondCard = shoe.giveCard();
+}
+
+const Card&	Dealer::getSecondCard(void)
+{
+	return (secondCard);
+}
+
 int     Dealer::getHandSum(void)
 {
     return (handSum);

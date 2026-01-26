@@ -20,11 +20,14 @@ class   Player
     int             getHandSum(void);
     void            clearHand(void);
     size_t          handSize(void);
+	int				getBet(void);
+	bool			setBet(int amoumt);
   private:
     std::string         name;
     unsigned int        money;
     std::vector<Card>   hand;
     int                 handSum;
+	int					bet;
 };
 
 #endif

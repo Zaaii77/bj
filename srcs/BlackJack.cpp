@@ -54,6 +54,43 @@ void    BlackJack::dealingPhase(void)
     dealCardToPlayer(player);
     dealer.pickCard();
     dealCardToPlayer(player);
+	dealer.pickSecondCard();
+}
+
+void	BlackJack::playerChoice(void)
+{
+	std::string	userChoice;
+	char		choice;
+	int			sum = player.getHandSum();
+
+	while (sum < 21)
+	{
+		userChoice.clear();
+		choice = 0;
+		while (userChoice.length() != 1 && choice != 's' && choice != 'd')
+		{
+			std::cout << "Your hand: " << sum << ". Dealer card: " << dealer.getCardValue(0) << std::endl;
+			std::cout << "select an option:" << std::endl;
+			std::cout << "'d' to draw or 's' to stop" << std::endl;
+			std::getline(std::cin, userChoice);
+			if (std::cin.eof())
+				throw (std::runtime_error("User stop the program"));
+			choice = userChoice.empty() ? 0 : userChoice.front();
+		}
+		if (choice == 'd')
+		{
+			dealCardToPlayer(player);
+			std::cout << "you picked a " << player.getCardValue(player.handSize() - 1) << std::endl;
+			sum = player.getHandSum();
+			std::cout << "your hand is now " << sum << std::endl;
+			if (sum > 21)
+				return ;
+		}
+		else if (choice == 's')
+			return ;
+		else
+			std::cout << "'d' to draw or 's' to stop" << std::endl;
+	}
 }
 
 void    BlackJack::startGame(void)
@@ -62,40 +99,13 @@ void    BlackJack::startGame(void)
     {
         clearScreen();
         dealingPhase();
+		gameStatus = NONE;
         std::cout << "Dealer have " << dealer.getCardValue(0) << std::endl;
+		this->playerChoice();
         if (player.getHandSum() > 21)
         {
             std::cout << "wasted you get " << player.getHandSum() << std::endl;
-            break ;
-        }
-        while (player.getHandSum() <= 21)
-        {
-            std::string userChoice;
-            char    choice = 0;
-            while (userChoice.length() != 1 && choice != 's' && choice != 'd')
-            {
-                std::cout << "Your hand: " << player.getHandSum() << ". Dealer card: " << dealer.getCardValue(0) << std::endl;
-                std::cout << "select an option:" << std::endl;
-                std::cout << "'d' to draw or 's' to stop" << std::endl;
-                std::getline(std::cin, userChoice);
-                if (std::cin.eof())
-                    throw (std::runtime_error("User stop the program"));
-                choice = userChoice.empty() ? 0 : userChoice.front();
-            }
-            if (choice == 'd')
-            {
-                dealCardToPlayer(player);
-                std::cout << "you picked a " << player.getCardValue(player.handSize() - 1) << std::endl;
-                std::cout << "your hand is now " << player.getHandSum() << std::endl;
-                if (player.getHandSum() > 21)
-                    break ;
-            }
-            else
-                break ;
-        }
-        if (player.getHandSum() > 21)
-        {
-            std::cout << "wasted you get " << player.getHandSum() << std::endl;
+			gameStatus = LOOSE;
             break ;
         }
         else if (player.getHandSum() == 21)
