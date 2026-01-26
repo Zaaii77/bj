@@ -13,6 +13,7 @@ class   Dealer
 		Dealer&	operator=(const Dealer& other) = delete;
         void    dealCard(Player& player);
         void    checkShoe(void);
+        size_t  getDeckSize();
         void    pickCard(void);
         int     getHandSum(void);
         int     getCardValue(int index);

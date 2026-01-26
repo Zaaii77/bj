@@ -30,3 +30,8 @@ int     Dealer::getCardValue(int index)
         throw (std::runtime_error("You try to access outside the dealer's hand"));
     return (hand[index].getValue());
 }
+
+size_t  Dealer::getDeckSize(void)
+{
+    return (hand.size());
+}
