@@ -7,6 +7,7 @@
 # include <ctime>
 # include <cstdlib>
 # include <algorithm>
+# include <unistd.h>
 # include "Dealer.hpp"
 
 # define STARTING_MONEY 500
@@ -32,6 +33,7 @@ class   BlackJack
 		void				dealCardToPlayer(Player& player);
 		Player&				getPlayer(void);
 		void				dealingPhase(void);
+		void				clearScreen(void);
 		Dealer				dealer;
 		Player				player;
 		Status				gameStatus;

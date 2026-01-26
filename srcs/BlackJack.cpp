@@ -25,8 +25,15 @@ BlackJack::BlackJack()
     name.erase(std::remove(name.begin(), name.end(), ' '), name.end());
     this->player = Player(name, STARTING_MONEY);
     std::cout << "Nice to meet you " << name << std::endl;
-    std::cout << "You will start with " << STARTING_MONEY << "$. Try to earn more" << std::endl;
+    std::cout << "You will start with " << STARTING_MONEY << "$. Try to earn more\nGame strarting.." << std::endl;
+    sleep(5);
 }
+
+void    BlackJack::clearScreen(void)
+{
+    std::cout << "\033[2J\033[H";
+}
+
 
 void		BlackJack::dealCardToPlayer(Player& player)
 {
@@ -53,6 +60,7 @@ void    BlackJack::startGame(void)
 {
     while (player.getMoney() > 0)
     {
+        clearScreen();
         dealingPhase();
         std::cout << "Dealer have " << dealer.getCardValue(0) << std::endl;
         if (player.getHandSum() > 21)
