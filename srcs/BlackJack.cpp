@@ -202,6 +202,7 @@ void    BlackJack::moneyPhase(void)
             break ;
         case DRAW:
             player.addMoney(player.getBet());
+            break ;
         case LOOSE:
             break ;
         case NONE:

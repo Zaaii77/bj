@@ -24,7 +24,7 @@ class   Player
     bool			      setBet(float amount);
   private:
     std::string         name;
-    unsigned int        money;
+    float               money;
     std::vector<Card>   hand;
     int                 handSum;
 	  unsigned int        bet;
