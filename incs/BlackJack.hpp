@@ -41,6 +41,8 @@ class   BlackJack
 		Dealer				dealer;
 		Player				player;
 		Status				gameStatus;
+		std::string			roundMsg;
+		bool				stopFlag;
 };
 
 #endif

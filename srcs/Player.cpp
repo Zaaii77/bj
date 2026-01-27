@@ -62,7 +62,7 @@ float	Player::getBet(void)
 
 bool	Player::setBet(float amount)
 {
-	if (money - amount > 0.f)
+	if (money - amount >= 0.f)
 	{
 		bet = amount;
 		money -= amount;
