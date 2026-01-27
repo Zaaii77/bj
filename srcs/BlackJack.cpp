@@ -136,8 +136,6 @@ void	BlackJack::playerChoice(void)
 		}
 		else if (choice == 's')
 			return ;
-		else
-			std::cout << "'d' to draw or 's' to stand" << std::endl;
 	}   
     if (player.getHandSum() > 21)
     {
