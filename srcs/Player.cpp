@@ -43,11 +43,14 @@ int	Player::getCardValue(size_t index)
 
 int	Player::getHandSum(void)
 {
+	if (hasAnAce && handSum + 10 <= 21)
+		return (handSum + 10);
 	return (handSum);
 }
 
 void	Player::clearHand(void)
 {
+	hasAnAce = false;
 	hand.clear();
 	handSum = 0;
 }

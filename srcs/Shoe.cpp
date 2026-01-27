@@ -7,11 +7,13 @@ Shoe::Shoe()
 
 void	Shoe::resetShoe(void)
 {
+	std::cout << "reset shoe.." << std::endl;
 	this->cards.clear();
 	for (int j = 0; j < DECK_NUMBER; j++)
 		for (int h = 0; h < 4; h++)
 			for (int i = 0; i < 13; i++)
 				this->cards.push_back(Card(i));
+	sleep(3);
 }
 
 Card	Shoe::giveCard(void)

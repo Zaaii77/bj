@@ -9,6 +9,7 @@ void    Dealer::checkShoe(void)
 {
     handSum = 0;
     hand.clear();
+    hasAnAce = false;
     if (shoe.size() < 52)
         shoe.resetShoe();
 }
@@ -17,6 +18,8 @@ void    Dealer::pickCard(void)
 {
     hand.push_back(shoe.giveCard());
     handSum += hand.back().getValue();
+    if (hand.back().getType() == AS)
+        hasAnAce = true;
 }
 
 void	Dealer::pickSecondCard(void)
@@ -31,6 +34,8 @@ const Card&	Dealer::getSecondCard(void)
 
 int     Dealer::getHandSum(void)
 {
+    if (hasAnAce && handSum + 10 <= 21)
+        return (handSum + 10);
     return (handSum);
 }
 
@@ -49,6 +54,8 @@ size_t  Dealer::getDeckSize(void)
 void        Dealer::showSecondCard(void)
 {
     hand.push_back(secondCard);
+    if (hand.back().getType() == AS)
+        hasAnAce = true;
     handSum += hand.back().getValue();
     std::cout << "Dealer shows his second card: " << hand.back().getValue() << "\nDealer's hand is now " << handSum << std::endl;
 }
