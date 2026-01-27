@@ -29,9 +29,20 @@ BlackJack::BlackJack()
     sleep(5);
 }
 
-void    BlackJack::clearScreen(void)
+void    BlackJack::betPhase(void)
 {
+    std::string bet;
     std::cout << "\033[2J\033[H";
+    std::cout << "You money is : " << player.getMoney() << std::endl;
+    std::cout << "How many you want to bet ?" << std::endl;
+    while (player.getBet() == 0)
+    {
+        std::getline(std::cin, bet);
+        if (std::cin.eof())
+            throw (std::runtime_error("User leave the table"));
+        if (player.setBet(atoi(bet.c_str())))
+            break ;
+    }
 }
 
 
@@ -151,13 +162,35 @@ void    BlackJack::dealerPhase(void)
     }
 }
 
+void    BlackJack::moneyPhase(void)
+{
+    switch (gameStatus)
+    {
+        case WIN:
+            if (player.handSize() == 2 && player.getHandSum() == 21)
+                player.addMoney(roundf(player.getBet() * 2));
+            else
+                player.addMoney(roundf(player.getBet()) * 1.5);
+            break ;
+        case DRAW:
+            player.addMoney(player.getBet());
+        case LOOSE:
+            break ;
+        case NONE:
+            std::cout << "There is a mistake in the code bro" << std::endl;
+            break ;
+    }
+    player.setBet(0);
+    gameStatus = NONE;
+}
+
 void    BlackJack::startGame(void)
 {
     while (player.getMoney() > 0)
     {
-        clearScreen();
+        moneyPhase();
+        betPhase();
         dealingPhase();
-		gameStatus = NONE;
         std::cout << "Dealer have " << dealer.getCardValue(0) << std::endl;
 		this->playerChoice();
         dealer.showSecondCard();

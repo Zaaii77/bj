@@ -22,12 +22,12 @@ void	Player::addCard(Card card)
 	handSum += card.getValue();
 }
 
-void	Player::addMoney(unsigned int gain)
+void	Player::addMoney(float gain)
 {
 	money += gain;
 }
 
-unsigned int	Player::getMoney(void)
+float	Player::getMoney(void)
 {
 	return (money);
 }
@@ -55,15 +55,18 @@ size_t	Player::handSize(void)
 	return (hand.size());
 }
 
-int	Player::getBet(void)
+float	Player::getBet(void)
 {
 	return (bet);
 }
 
-bool	Player::setBet(unsigned int amount)
+bool	Player::setBet(float amount)
 {
-	if (money - amount > 0)
+	if (money - amount > 0.f)
+	{
 		bet = amount;
+		money -= amount;
+	}
 	else
 	{
 		std::cout << "You try to spend more money than you have..." << std::endl;

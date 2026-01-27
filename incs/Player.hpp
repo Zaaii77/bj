@@ -14,20 +14,20 @@ class   Player
     Player(const Player& other);
     Player& operator=(const Player& other);
     void            addCard(Card card);
-    unsigned int    getMoney(void);
-    void            addMoney(unsigned int gain);
+    float           getMoney(void);
+    void            addMoney(float gain);
     int             getCardValue(int index);
     int             getHandSum(void);
     void            clearHand(void);
     size_t          handSize(void);
-    int				      getBet(void);
-    bool			      setBet(unsigned int amount);
+    float	          getBet(void);
+    bool			      setBet(float amount);
   private:
     std::string         name;
     unsigned int        money;
     std::vector<Card>   hand;
     int                 handSum;
-	int					bet;
+	  unsigned int        bet;
 };
 
 #endif
