@@ -20,8 +20,8 @@ class   Player
     int             getHandSum(void);
     void            clearHand(void);
     size_t          handSize(void);
-	int				getBet(void);
-	bool			setBet(int amoumt);
+    int				      getBet(void);
+    bool			      setBet(unsigned int amount);
   private:
     std::string         name;
     unsigned int        money;

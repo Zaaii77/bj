@@ -20,6 +20,7 @@ class   Dealer
         int     	getCardValue(int index);
 		const Card&	getSecondCard(void);
 		void		pickSecondCard(void);
+        void        showSecondCard(void);
 
     private:
         Shoe                shoe;

@@ -60,9 +60,9 @@ int	Player::getBet(void)
 	return (bet);
 }
 
-bool	Player::setBet(int amount)
+bool	Player::setBet(unsigned int amount)
 {
-	if (money - amount >= 0)
+	if (money - amount > 0)
 		bet = amount;
 	else
 	{

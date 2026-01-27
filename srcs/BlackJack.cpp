@@ -90,7 +90,65 @@ void	BlackJack::playerChoice(void)
 			return ;
 		else
 			std::cout << "'d' to draw or 's' to stop" << std::endl;
-	}
+	}   
+    if (player.getHandSum() > 21)
+    {
+        std::cout << "wasted you get " << player.getHandSum() << std::endl;
+        gameStatus = LOOSE;
+        return ;
+    }
+    else if (player.getHandSum() == 21)
+    {
+        if (player.handSize() == 2)
+            std::cout << "BLACKJACK BODY !" << std::endl;
+        else
+            std::cout << "What a chance, you get 21" << std::endl;
+    }
+}
+
+void    BlackJack::dealerPhase(void)
+{
+    while (dealer.getHandSum() < 17)
+    {
+        dealer.pickCard();
+        std::cout << "Dealer pick a " << dealer.getCardValue(dealer.getDeckSize() - 1) << ". dealer's hand: " << dealer.getHandSum() << std::endl;
+    }
+    if (dealer.getHandSum() > 21)
+    {
+        std::cout << "You won. Dealer get " << dealer.getHandSum() << std::endl;
+        gameStatus = WIN;
+        
+    }
+    if (dealer.getHandSum() < 22 && dealer.getHandSum() > player.getHandSum())
+    {
+        std::cout << "Dealer won. You get " << player.getHandSum() << " and the dealer have " << dealer.getHandSum() << std::endl;
+        return ;
+    }
+    else if (dealer.getHandSum() < 22 && dealer.getHandSum() == player.getHandSum())
+    {
+        std::cout << "You and the dealer have the same hand sum, draw." << std::endl;
+        gameStatus = DRAW;
+        return ;
+    }
+    else
+    {
+        while (dealer.getHandSum() < 22 && dealer.getHandSum() <= player.getHandSum())
+        {
+            dealer.pickCard();
+            if (dealer.getHandSum() > 21)
+            {
+                std::cout << "You won, dealer get " << dealer.getHandSum() << std::endl;
+                gameStatus = WIN;
+                return ;
+            }
+            else if (dealer.getHandSum() > player.getHandSum())
+            {
+                std::cout << "You loose noob" << std::endl;
+                gameStatus = LOOSE;
+                return ;
+            }
+        }
+    }
 }
 
 void    BlackJack::startGame(void)
@@ -102,59 +160,7 @@ void    BlackJack::startGame(void)
 		gameStatus = NONE;
         std::cout << "Dealer have " << dealer.getCardValue(0) << std::endl;
 		this->playerChoice();
-        if (player.getHandSum() > 21)
-        {
-            std::cout << "wasted you get " << player.getHandSum() << std::endl;
-			gameStatus = LOOSE;
-            break ;
-        }
-        else if (player.getHandSum() == 21)
-        {
-            if (player.handSize() == 2)
-                std::cout << "BLACKJACK BODY !" << std::endl;
-            else
-                std::cout << "What a chance, you get 21" << std::endl;
-        }
-        while (dealer.getHandSum() < 17)
-        {
-            dealer.pickCard();
-            std::cout << "Dealer pick a " << dealer.getCardValue(dealer.getDeckSize() - 1) << ". New dealer's hand: " << dealer.getHandSum() << std::endl;
-        }
-        if (dealer.getHandSum() > 21)
-        {
-            std::cout << "You won. Dealer get " << dealer.getHandSum() << std::endl;
-            gameStatus = WIN;
-            
-        }
-        if (dealer.getHandSum() < 22 && dealer.getHandSum() > player.getHandSum())
-        {
-            std::cout << "Dealer won. You get " << player.getHandSum() << " and the dealer have " << dealer.getHandSum() << std::endl;
-            break ;
-        }
-        else if (dealer.getHandSum() < 22 && dealer.getHandSum() == player.getHandSum())
-        {
-            std::cout << "You and the dealer have the same hand sum, draw." << std::endl;
-            gameStatus = DRAW;
-            break ;
-        }
-        else
-        {
-            while (dealer.getHandSum() < 22 && dealer.getHandSum() <= player.getHandSum())
-            {
-                dealer.pickCard();
-                if (dealer.getHandSum() > 21)
-                {
-                    std::cout << "You won, dealer get " << dealer.getHandSum() << std::endl;
-                    gameStatus = WIN;
-                    break ;
-                }
-                else if (dealer.getHandSum() > player.getHandSum())
-                {
-                    std::cout << "You loose noob" << std::endl;
-                    gameStatus = LOOSE;
-                    break ;
-                }
-            }
-        }
+        dealer.showSecondCard();
+        dealerPhase();
     }
 }

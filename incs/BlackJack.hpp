@@ -35,6 +35,7 @@ class   BlackJack
 		void				dealingPhase(void);
 		void				clearScreen(void);
 		void				playerChoice(void);
+		void    			dealerPhase(void);
 		Dealer				dealer;
 		Player				player;
 		Status				gameStatus;
