@@ -19,6 +19,8 @@ Player&	Player::operator=(const Player& other)
 void	Player::addCard(Card card)
 {
 	hand.push_back(card);
+	if (card.getType() == AS)
+		hasAnAce = true;
 	handSum += card.getValue();
 }
 
