@@ -34,9 +34,9 @@ float	Player::getMoney(void)
 	return (money);
 }
 
-int	Player::getCardValue(int index)
+int	Player::getCardValue(size_t index)
 {
-	if (static_cast<size_t>(index) >= hand.size())
+	if (index >= hand.size())
 		throw (std::runtime_error("You try to access outside the player's hand"));
 	return (hand[index].getValue());
 }

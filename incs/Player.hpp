@@ -16,7 +16,7 @@ class   Player
         void            addCard(Card card);
         float           getMoney(void);
         void            addMoney(float gain);
-        int             getCardValue(int index);
+        int             getCardValue(size_t index);
         int             getHandSum(void);
         void            clearHand(void);
         size_t          handSize(void);

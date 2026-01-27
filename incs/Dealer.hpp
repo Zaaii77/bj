@@ -17,7 +17,7 @@ class   Dealer
         size_t  	getDeckSize();
         void    	pickCard(void);
         int     	getHandSum(void);
-        int     	getCardValue(int index);
+        int     	getCardValue(size_t index);
 		const Card&	getSecondCard(void);
 		void		pickSecondCard(void);
         void        showSecondCard(void);

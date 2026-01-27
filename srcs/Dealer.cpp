@@ -34,9 +34,9 @@ int     Dealer::getHandSum(void)
     return (handSum);
 }
 
-int     Dealer::getCardValue(int index)
+int     Dealer::getCardValue(size_t index)
 {
-    if (static_cast<size_t>(index) >= hand.size())
+    if (index >= hand.size())
         throw (std::runtime_error("You try to access outside the dealer's hand"));
     return (hand[index].getValue());
 }
