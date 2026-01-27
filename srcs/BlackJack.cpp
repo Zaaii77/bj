@@ -82,7 +82,7 @@ void    BlackJack::dealingPhase(void)
         dealerTotal = baseTotal + 10;
     if (dealerTotal == 21)
     {
-        roundMsg = "Dealer have a blackjack. second card: " + std::to_string(dealer.getSecondCard().getValue()) + "\n";
+        roundMsg = "Dealer has a blackjack. second card: " + std::to_string(dealer.getSecondCard().getValue()) + "\n";
         if (player.getHandSum() == 21)
         {
             roundMsg += "Your hand is 21 too. draw.";
@@ -95,7 +95,7 @@ void    BlackJack::dealingPhase(void)
         }
     }
     else
-        std::cout << "Dealer have " << dealer.getCardValue(0) << std::endl;
+        std::cout << "Dealer has " << dealer.getCardValue(0) << std::endl;
 }
 
 void	BlackJack::playerChoice(void)
@@ -104,8 +104,9 @@ void	BlackJack::playerChoice(void)
 	char		choice;
 	int			sum = player.getHandSum();
 
-    if (gameStatus != NONE)
-        return ;
+	if (gameStatus != NONE)
+		return ;
+
 	while (sum < 21)
 	{
 		userChoice.clear();
@@ -153,7 +154,7 @@ void	BlackJack::playerChoice(void)
         }
         else
             roundMsg = "Lucky! You got 21!";
-    }
+    }            
 }
 
 void    BlackJack::dealerPhase(void)
@@ -185,35 +186,15 @@ void    BlackJack::dealerPhase(void)
     }
     else if (dHandSum < 22 && dHandSum == pHandSum)
     {
-        roundMsg = "You and the dealer have the same hand. Draw.";
+        roundMsg = "You and the dealer has the same hand. Draw.";
         gameStatus = DRAW;
         return ;
     }
     else
     {
-        while (dHandSum < 22 && dHandSum < pHandSum)
-        {
-            dealer.pickCard();
-            dHandSum = dealer.getHandSum();
-            if (dHandSum > 21)
-            {
-                roundMsg = "You won! Dealer got " + std::to_string(dHandSum);
-                gameStatus = WIN;
-                return ;
-            }
-            else if (dHandSum > pHandSum)
-            {
-                roundMsg = "The dealer has a better hand. Sorry!";
-                gameStatus = LOOSE;
-                return ;
-            }
-            else if (dHandSum == pHandSum)
-            {
-                roundMsg = "Dealer got the same hand as you. Draw.";
-                gameStatus = DRAW;
-                return ;
-            }
-        }
+        roundMsg = "You won! You got " + std::to_string(pHandSum);
+        roundMsg += " and the dealer has " + std::to_string(dHandSum);
+        gameStatus = WIN;
     }
 }
 

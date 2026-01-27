@@ -3,6 +3,7 @@
 
 # include "Shoe.hpp"
 # include "Player.hpp"
+# include <unistd.h>
 
 class   Dealer
 {
