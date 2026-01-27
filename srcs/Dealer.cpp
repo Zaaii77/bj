@@ -27,7 +27,7 @@ void	Dealer::pickSecondCard(void)
 	secondCard = shoe.giveCard();
 }
 
-const Card&	Dealer::getSecondCard(void)
+Card&	Dealer::getSecondCard(void)
 {
 	return (secondCard);
 }

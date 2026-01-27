@@ -76,6 +76,26 @@ void    BlackJack::dealingPhase(void)
     dealer.pickCard();
     dealCardToPlayer(player);
 	dealer.pickSecondCard();
+    int baseTotal = dealer.getHandSum() + dealer.getSecondCard().getValue();
+    int dealerTotal = baseTotal;
+    if (dealer.getSecondCard().getType() == AS && baseTotal + 10 <= 21)
+        dealerTotal = baseTotal + 10;
+    if (dealerTotal == 21)
+    {
+        roundMsg = "Dealer have a blackjack. second card: " + std::to_string(dealer.getSecondCard().getValue()) + "\n";
+        if (player.getHandSum() == 21)
+        {
+            roundMsg += "Your hand is 21 too. draw.";
+            gameStatus = DRAW;
+        }
+        else
+        {
+            roundMsg += "You loose this round.";
+            gameStatus = LOOSE;
+        }
+    }
+    else
+        std::cout << "Dealer have " << dealer.getCardValue(0) << std::endl;
 }
 
 void	BlackJack::playerChoice(void)
@@ -84,6 +104,8 @@ void	BlackJack::playerChoice(void)
 	char		choice;
 	int			sum = player.getHandSum();
 
+    if (gameStatus != NONE)
+        return ;
 	while (sum < 21)
 	{
 		userChoice.clear();
@@ -125,7 +147,10 @@ void	BlackJack::playerChoice(void)
     else if (player.getHandSum() == 21)
     {
         if (player.handSize() == 2)
+        {
             roundMsg = "BLACKJACK!";
+            gameStatus = WIN;
+        }
         else
             roundMsg = "Lucky! You got 21!";
     }
@@ -133,6 +158,8 @@ void	BlackJack::playerChoice(void)
 
 void    BlackJack::dealerPhase(void)
 {
+    if (gameStatus != NONE)
+        return ;
     int dHandSum = dealer.getHandSum();
     int pHandSum = player.getHandSum();
     while (dHandSum < 17)
@@ -196,9 +223,9 @@ void    BlackJack::moneyPhase(void)
     {
         case WIN:
             if (player.handSize() == 2 && player.getHandSum() == 21)
-                player.addMoney(roundf(player.getBet() * 2));
+                player.addMoney(roundf(player.getBet() * 2.5));
             else
-                player.addMoney(roundf(player.getBet()) * 1.5);
+                player.addMoney(roundf(player.getBet()) * 2);
             break ;
         case DRAW:
             player.addMoney(player.getBet());
@@ -223,13 +250,10 @@ void    BlackJack::startGame(void)
         if (stopFlag == true)
             break ;
         dealingPhase();
-        std::cout << "Dealer have " << dealer.getCardValue(0) << std::endl;
-		this->playerChoice();
-        if (gameStatus != LOOSE)
-        {
+		playerChoice();
+        if (gameStatus == NONE)
             dealer.showSecondCard();
-            dealerPhase();
-        }
+        dealerPhase();
     }
     std::cout << "Sorry, you've spent all your money. See you later!" << std::endl;
 }
