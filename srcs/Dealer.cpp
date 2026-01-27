@@ -50,5 +50,5 @@ void        Dealer::showSecondCard(void)
 {
     hand.push_back(secondCard);
     handSum += hand.back().getValue();
-    std::cout << "dealer show his second card... -> " << hand.back().getValue() << "\ndealer's hand is now " << handSum << std::endl;
+    std::cout << "Dealer shows his second card: " << hand.back().getValue() << "\nDealer's hand is now " << handSum << std::endl;
 }

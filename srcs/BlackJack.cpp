@@ -14,18 +14,18 @@ BlackJack::BlackJack() : stopFlag(false)
 {
     std::string name;
 
-    std::cout << "Welcome in your personnal blackjack game !" << std::endl;
+    std::cout << "Welcome to your personal blackjack game!" << std::endl;
     while (!nameIsValid(name))
     {
-        std::cout << "What's your name ?" << std::endl;
+        std::cout << "What's your name?" << std::endl;
         std::getline(std::cin, name);
         if (std::cin.eof())
             throw (std::runtime_error("Program closed by user"));
     }
     name.erase(std::remove(name.begin(), name.end(), ' '), name.end());
     this->player = Player(name, STARTING_MONEY);
-    std::cout << "Nice to meet you " << name << std::endl;
-    std::cout << "You will start with " << STARTING_MONEY << "$. Try to earn more\nGame strarting.." << std::endl;
+    std::cout << "Nice to meet you, " << name << "!" << std::endl;
+    std::cout << "You will start with $" << STARTING_MONEY << ". Try to earn more!\nGame starting..." << std::endl;
     sleep(2);
 }
 
@@ -36,13 +36,13 @@ void    BlackJack::betPhase(void)
     std::cout << "\033[2J\033[H" << std::endl;
     moneyPhase();
     playerM = player.getMoney();
-    std::cout << "You money is : " << playerM << std::endl;
+    std::cout << "Your money is: $" << playerM << std::endl;
     if (playerM == 0)
     {
         stopFlag = true;
         return ;
     }
-    std::cout << "How many you want to bet ?" << std::endl;
+    std::cout << "How much do you want to bet?" << std::endl;
     while (player.getBet() == 0)
     {
         std::getline(std::cin, bet);
@@ -51,7 +51,7 @@ void    BlackJack::betPhase(void)
         if (atoi(bet.c_str()) > 0 && player.setBet(atoi(bet.c_str())))
             break ;
         else
-            std::cout << "Please type a valid number > 0" << std::endl;
+            std::cout << "Please enter a valid number > 0" << std::endl;
     }
 }
 
@@ -71,7 +71,7 @@ void    BlackJack::dealingPhase(void)
     dealer.checkShoe();
     gameStatus = NONE;
     player.clearHand();
-    std::cout << "Dealing phase...\n" << std::endl;
+    std::cout << "Dealing cards...\n" << std::endl;
     dealCardToPlayer(player);
     dealer.pickCard();
     dealCardToPlayer(player);
@@ -91,8 +91,8 @@ void	BlackJack::playerChoice(void)
 		while (userChoice.length() != 1 && choice != 's' && choice != 'd')
 		{
 			std::cout << "Your hand: " << sum << ". Dealer card: " << dealer.getCardValue(0) << std::endl;
-			std::cout << "select an option:" << std::endl;
-			std::cout << "'d' to draw or 's' to stop" << std::endl;
+			std::cout << "Select an option:" << std::endl;
+			std::cout << "'d' to draw or 's' to stand" << std::endl;
 			std::getline(std::cin, userChoice);
 			if (std::cin.eof())
 				throw (std::runtime_error("User stop the program"));
@@ -101,12 +101,12 @@ void	BlackJack::playerChoice(void)
 		if (choice == 'd')
 		{
 			dealCardToPlayer(player);
-			std::cout << "you picked a " << player.getCardValue(player.handSize() - 1) << std::endl;
+			std::cout << "You picked a " << player.getCardValue(player.handSize() - 1) << std::endl;
 			sum = player.getHandSum();
-			std::cout << "your hand is now " << sum << std::endl;
+			std::cout << "Your hand is now " << sum << std::endl;
 			if (sum > 21)
             {
-                roundMsg = "Wasted you get " + std::to_string(sum);
+                roundMsg = "Busted! You got " + std::to_string(sum);
                 gameStatus = LOOSE;
 				return ;
             }
@@ -114,20 +114,20 @@ void	BlackJack::playerChoice(void)
 		else if (choice == 's')
 			return ;
 		else
-			std::cout << "'d' to draw or 's' to stop" << std::endl;
+			std::cout << "'d' to draw or 's' to stand" << std::endl;
 	}   
     if (player.getHandSum() > 21)
     {
-        roundMsg = "wasted you get " + std::to_string(player.getHandSum());
+        roundMsg = "Busted! You got " + std::to_string(player.getHandSum());
         gameStatus = LOOSE;
         return ;
     }
     else if (player.getHandSum() == 21)
     {
         if (player.handSize() == 2)
-            roundMsg = "BLACKJACK BODY !";
+            roundMsg = "BLACKJACK!";
         else
-            roundMsg = "What a chance, you get 21";
+            roundMsg = "Lucky! You got 21!";
     }
 }
 
@@ -139,26 +139,26 @@ void    BlackJack::dealerPhase(void)
     {
         dealer.pickCard();
         dHandSum = dealer.getHandSum();
-        std::cout << "Dealer pick a " << dealer.getCardValue(dealer.getDeckSize() - 1);
-        std::cout << ". dealer's hand: " << dHandSum << std::endl;
+        std::cout << "Dealer picks a " << dealer.getCardValue(dealer.getDeckSize() - 1);
+        std::cout << ". Dealer's hand: " << dHandSum << std::endl;
     }
     if (dHandSum > 21)
     {
-        roundMsg = "You won. Dealer get " + std::to_string(dHandSum);
+        roundMsg = "You won! Dealer got " + std::to_string(dHandSum);
         gameStatus = WIN;
         return ;
     }
     if (dHandSum < 22 && dHandSum > pHandSum)
     {
         roundMsg.clear();
-        roundMsg = "Dealer won. You get " + std::to_string(pHandSum);
-        roundMsg += " and the dealer have " + std::to_string(dHandSum);
+        roundMsg = "Dealer won. You got " + std::to_string(pHandSum);
+        roundMsg += " and the dealer has " + std::to_string(dHandSum);
         gameStatus = LOOSE;
         return ;
     }
     else if (dHandSum < 22 && dHandSum == pHandSum)
     {
-        roundMsg = "You and the dealer have the same hand sum, draw.";
+        roundMsg = "You and the dealer have the same hand. Draw.";
         gameStatus = DRAW;
         return ;
     }
@@ -170,19 +170,19 @@ void    BlackJack::dealerPhase(void)
             dHandSum = dealer.getHandSum();
             if (dHandSum > 21)
             {
-                roundMsg = "You won, dealer get " + std::to_string(dHandSum);
+                roundMsg = "You won! Dealer got " + std::to_string(dHandSum);
                 gameStatus = WIN;
                 return ;
             }
             else if (dHandSum > pHandSum)
             {
-                roundMsg = "The dealer have a better hand sorry";
+                roundMsg = "The dealer has a better hand. Sorry!";
                 gameStatus = LOOSE;
                 return ;
             }
             else if (dHandSum == pHandSum)
             {
-                roundMsg = "Dealer get the same hand sum than yours";
+                roundMsg = "Dealer got the same hand as you. Draw.";
                 gameStatus = DRAW;
                 return ;
             }
@@ -230,5 +230,5 @@ void    BlackJack::startGame(void)
             dealerPhase();
         }
     }
-    std::cout << "Sorry body you spend all your money... See you later" << std::endl;
+    std::cout << "Sorry, you've spent all your money. See you later!" << std::endl;
 }

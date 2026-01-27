@@ -69,7 +69,7 @@ bool	Player::setBet(float amount)
 	}
 	else
 	{
-		std::cout << "You try to spend more money than you have..." << std::endl;
+		std::cout << "You're trying to spend more money than you have." << std::endl;
 		return (false);
 	}
 	return (true);
