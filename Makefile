@@ -18,7 +18,7 @@ AR = ar -rcs
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJ)
+$(NAME): $(OBJ)
 	@$(CPP) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo "$(NAME) has been compiled."
 
