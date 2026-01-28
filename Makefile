@@ -32,7 +32,6 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
-	$(RM) .shell_history
 	@echo "$(NAME) deleted."
 
 re: fclean all
