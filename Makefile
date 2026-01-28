@@ -7,7 +7,8 @@ SRC_DIR = srcs
 OBJ_DIR = obj
 
 SRC =	$(SRC_DIR)/main.cpp $(SRC_DIR)/Card.cpp $(SRC_DIR)/Shoe.cpp \
-		$(SRC_DIR)/BlackJack.cpp $(SRC_DIR)/Player.cpp $(SRC_DIR)/Dealer.cpp
+		$(SRC_DIR)/BlackJack.cpp $(SRC_DIR)/Player.cpp $(SRC_DIR)/Dealer.cpp \
+		$(SRC_DIR)/Multiplayer.cpp
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
