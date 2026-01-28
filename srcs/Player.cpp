@@ -79,3 +79,13 @@ bool	Player::setBet(float amount)
 	}
 	return (true);
 }
+
+void	Player::setName(const std::string& n)
+{
+	name = n;
+}
+
+const std::string&	Player::getName(void) const
+{
+	return (name);
+}

@@ -13,15 +13,17 @@ class   Player
         ~Player() {};
         Player(const Player& other);
         Player& operator=(const Player& other);
-        void            addCard(Card card);
-        float           getMoney(void);
-        void            addMoney(float gain);
-        int             getCardValue(size_t index);
-        int             getHandSum(void);
-        void            clearHand(void);
-        size_t          handSize(void);
-        float           getBet(void);
-        bool            setBet(float amount);
+        void                addCard(Card card);
+        float               getMoney(void);
+        void                addMoney(float gain);
+        int                 getCardValue(size_t index);
+        int                 getHandSum(void);
+        void                clearHand(void);
+        size_t              handSize(void);
+        float               getBet(void);
+        bool                setBet(float amount);
+        void                setName(const std::string& n);
+        const std::string&  getName(void) const;
     private:
         std::string         name;
         float               money;
