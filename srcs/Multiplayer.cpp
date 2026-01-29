@@ -4,7 +4,7 @@ Multiplayer::Multiplayer() : socketFd(-1)
 {
     socketFd = socket(AF_INET, SOCK_STREAM, 0);
     if (socketFd == -1)
-        throw (std::runtime_error("Error with socket()"));
+        throw (std::runtime_error("socket"));
     memset(&sockaddr, 0, sizeof(sockaddr));
     sockaddr.sin_family = AF_INET;
     sockaddr.sin_port = htons(6697);
@@ -12,12 +12,12 @@ Multiplayer::Multiplayer() : socketFd(-1)
     if (bind(socketFd, (struct sockaddr *)&sockaddr, sizeof(sockaddr)) == -1)
     {
         close(socketFd);
-        throw (std::runtime_error("Error with bind()"));
+        throw (std::runtime_error("bind"));
     }
     if (listen(socketFd, maxPlayer) == -1)
     {
         close(socketFd);
-        throw (std::runtime_error("Error with listen()"));
+        throw (std::runtime_error("listen"));
     }
 }
 
