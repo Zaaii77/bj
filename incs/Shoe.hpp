@@ -2,6 +2,7 @@
 # define SHOE_HPP
 
 # include "Card.hpp"
+# include <vector>
 
 class   Shoe
 {
@@ -11,7 +12,6 @@ class   Shoe
         Shoe(const Shoe& other) = delete;
         Shoe&   operator=(const Shoe& other) = delete;
         Shoe(Shoe&& other) = default;
-        Shoe&   operator=(Shoe&& other) = default;
         int	        size(void);
         Card        giveCard(void);
         void        resetShoe(void);

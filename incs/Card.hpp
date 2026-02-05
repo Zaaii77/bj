@@ -1,7 +1,6 @@
 #ifndef CARD_HPP
 # define CARD_HPP
 
-# include <vector>
 # include <stdexcept>
 
 enum	Type {
