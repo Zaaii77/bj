@@ -2,6 +2,7 @@
 # define CARD_HPP
 
 # include <stdexcept>
+# include <vector>
 
 enum	Type {
 	AS = 0,
