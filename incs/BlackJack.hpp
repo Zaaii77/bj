@@ -30,7 +30,7 @@ class   BlackJack
 		BlackJack(const BlackJack& other) = delete;
 		BlackJack&	operator=(const BlackJack& other) = delete;
 		void		startGame();
-    private:		
+    private:
 		void				dealCardToPlayer(Player& player);
 		Player&				getPlayer(void);
 		void				dealingPhase(void);
@@ -38,11 +38,12 @@ class   BlackJack
 		void				playerChoice(void);
 		void    			dealerPhase(void);
 		void				moneyPhase(void);
+
 		Dealer				dealer;
 		Player				player;
 		Status				gameStatus;
 		std::string			roundMsg;
-		bool				stopFlag;
+		bool				stopFlag = false;
 };
 
 #endif

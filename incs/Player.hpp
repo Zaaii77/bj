@@ -24,12 +24,12 @@ class   Player
         bool            setBet(float amount);
 		void			printHand(void);
     private:
-        std::string         name;
-        float               money;
+        std::string         name = "";
+        float               money = 0;
         std::vector<Card>   hand;
-        int                 handSum;
-        unsigned int        bet;
-        bool                hasAnAce;
+        int                 handSum = 0;
+        unsigned int        bet = 0;
+        bool                hasAnAce = false;
 };
 
 #endif

@@ -27,8 +27,8 @@ class   Dealer
         Shoe                shoe;
 		Card				secondCard;
         std::vector<Card>   hand;
-        int                 handSum;
-        bool                hasAnAce;
+        int                 handSum = 0;
+        bool                hasAnAce = false;
 };
 
 #endif

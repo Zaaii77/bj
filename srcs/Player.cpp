@@ -82,8 +82,6 @@ bool	Player::setBet(float amount)
 
 void	Player::printHand(void)
 {
-	if (name != "Axel")
-		return ;
 	std::string	handString;
 
 	for (size_t i = 0; i < hand.size(); ++i)
