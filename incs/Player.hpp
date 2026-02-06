@@ -22,6 +22,7 @@ class   Player
         size_t          handSize(void);
         float           getBet(void);
         bool            setBet(float amount);
+		void			printHand(void);
     private:
         std::string         name;
         float               money;

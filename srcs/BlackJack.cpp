@@ -114,6 +114,7 @@ void	BlackJack::playerChoice(void)
 		while (userChoice.length() != 1 && choice != 's' && choice != 'd')
 		{
 			std::cout << "Your hand: " << sum << ". Dealer card: " << dealer.getCardValue(0) << std::endl;
+			player.printHand();
 			std::cout << "Select an option:" << std::endl;
 			std::cout << "'d' to draw or 's' to stand" << std::endl;
 			std::getline(std::cin, userChoice);
@@ -127,6 +128,7 @@ void	BlackJack::playerChoice(void)
 			std::cout << "You picked a " << player.getCardValue(player.handSize() - 1) << std::endl;
 			sum = player.getHandSum();
 			std::cout << "Your hand is now " << sum << std::endl;
+			player.printHand();
 			if (sum > 21)
             {
                 roundMsg = "Busted! You got " + std::to_string(sum);

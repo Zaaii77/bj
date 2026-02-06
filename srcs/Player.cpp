@@ -79,3 +79,59 @@ bool	Player::setBet(float amount)
 	}
 	return (true);
 }
+
+void	Player::printHand(void)
+{
+	if (name != "Axel")
+		return ;
+	std::string	handString;
+
+	for (size_t i = 0; i < hand.size(); ++i)
+	{
+		switch (hand[i].getType())
+		{
+			case AS:
+				handString += "AS";
+				break ;
+			case TWO:
+				handString += "TWO";
+				break ;
+			case THREE:
+				handString += "THREE";
+				break ;
+			case FOUR:
+				handString += "FOUR";
+				break ;
+			case FIVE:
+				handString += "FIVE";
+				break ;
+			case SIX:
+				handString += "SIX";
+				break ;
+			case SEVEN:
+				handString += "SEVEN";
+				break ;
+			case EIGHT:
+				handString += "EIGHT";
+				break ;
+			case NINE:
+				handString += "NINE";
+				break ;
+			case TEN:
+				handString += "TEN";
+				break ;
+			case JACK:
+				handString += "JACK";
+				break ;
+			case QUEEN:
+				handString += "QUEEN";
+				break ;
+			case KING:
+				handString += "KING";
+				break ;
+		}
+		if (i + 1 < hand.size())
+			handString += ", ";
+	}
+	std::cout << handString << std::endl;
+}
